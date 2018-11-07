@@ -129,9 +129,10 @@ def evalrank(model_path, data_path=None, split='dev', fold5=False):
     # load model and options
     checkpoint = torch.load(model_path)
     opt = checkpoint['opt']
-    print(opt)
     if data_path is not None:
         opt.data_path = data_path
+
+    print(opt)
 
     # load vocabulary used by the model
     with open(os.path.join(opt.vocab_path,
