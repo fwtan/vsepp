@@ -51,6 +51,7 @@ def get_paths(path, name='coco', use_restval=False):
         ids['train'] = np.load(os.path.join(capdir, 'coco_train_ids.npy'))
         ids['val'] = np.load(os.path.join(capdir, 'coco_dev_ids.npy'))[:5000]
         ids['test'] = np.load(os.path.join(capdir, 'coco_test_ids.npy'))
+        print('coco_test_ids:', ids['test'])
         ids['trainrestval'] = (
             ids['train'],
             np.load(os.path.join(capdir, 'coco_restval_ids.npy')))
