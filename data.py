@@ -58,7 +58,7 @@ def get_paths(path, name='coco', use_restval=False):
         all_test_image_names = [osp.splitext(osp.basename(x))[0] for x in all_test_image_paths]
         all_test_image_indices = [int(x[-12:]) for x in all_test_image_names]
         print(len(all_test_image_indices))
-        # ids['test'] = list(set(ids['test']) & set(all_test_image_indices))
+        ids['test'] = list(set(ids['test']) & set(all_test_image_indices))
         print('coco_test_ids:', ids['test'])
         print('len of test_ids', len(ids['test']))
 
