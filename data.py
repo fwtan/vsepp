@@ -7,6 +7,8 @@ from PIL import Image
 from pycocotools.coco import COCO
 import numpy as np
 import json as jsonmod
+from glob import glob
+import os.path as osp
 
 
 def get_paths(path, name='coco', use_restval=False):
@@ -51,7 +53,14 @@ def get_paths(path, name='coco', use_restval=False):
         ids['train'] = np.load(os.path.join(capdir, 'coco_train_ids.npy'))
         ids['val'] = np.load(os.path.join(capdir, 'coco_dev_ids.npy'))[:5000]
         ids['test'] = np.load(os.path.join(capdir, 'coco_test_ids.npy'))
+
+        all_test_image_paths = sorted(glob(os.path.join(roots['test']['img'], '*.jpg')))
+        all_test_image_names = [osp.splitext(osp.basename(x))[0] for x in all_test_image_paths]
+        all_test_image_indices = [int(x[-12:]) for x in all_test_image_names]
+        ids['test'] = list(set(ids['test']) & set(all_test_image_indices))
         print('coco_test_ids:', ids['test'])
+        print('len of test_ids', len(ids['test']))
+        
         ids['trainrestval'] = (
             ids['train'],
             np.load(os.path.join(capdir, 'coco_restval_ids.npy')))
