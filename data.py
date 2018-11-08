@@ -58,6 +58,7 @@ def get_paths(path, name='coco', use_restval=False):
         all_test_image_names = [osp.splitext(osp.basename(x))[0] for x in all_test_image_paths]
         all_test_image_indices = [int(x[-12:]) for x in all_test_image_names]  
         print(len(all_test_image_indices))
+        print(ids['test'].shape)
         valid_test_ids = [x for x in ids['test'] if x in all_test_image_indices]
         ids['test'] = np.array(valid_test_ids)
         print('coco_test_ids:', ids['test'])
