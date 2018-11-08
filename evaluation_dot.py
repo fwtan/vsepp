@@ -155,7 +155,7 @@ def evalrank(model_path, data_path=None, split='dev', fold5=False):
     print('Images: %d, Captions: %d' %
           (img_embs.shape[0] / 5, cap_embs.shape[0]))
 
-    scores = numpy.dot(img_embs, cap_embs.T).flatten()
+    scores = numpy.sum(numpy.multiply(img_embs, cap_embs), -1)
     print(scores.shape)
     print('scores:', np.mean(scores))
 
