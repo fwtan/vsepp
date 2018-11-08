@@ -44,6 +44,8 @@ class EncoderImageFull(nn.Module):
         self.embed_size = embed_size
         self.no_imgnorm = no_imgnorm
         self.use_abs = use_abs
+        print('image no_imgnorm: ', no_imgnorm)
+        print('image use_abs: ', use_abs)
 
         # Load a pre-trained model
         self.cnn = self.get_cnn(cnn_type, True)
@@ -189,6 +191,9 @@ class EncoderText(nn.Module):
         super(EncoderText, self).__init__()
         self.use_abs = use_abs
         self.embed_size = embed_size
+
+        # print('image no_imgnorm: ', no_imgnorm)
+        print('text use_abs: ', use_abs)
 
         # word embedding
         self.embed = nn.Embedding(vocab_size, word_dim)
